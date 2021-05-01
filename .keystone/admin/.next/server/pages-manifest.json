@@ -1,0 +1,10 @@
+{
+  "/_app": "pages/_app.js",
+  "/_error": "pages/_error.js",
+  "/_document": "pages/_document.js",
+  "/": "pages/index.js",
+  "/signin": "pages/signin.js",
+  "/drink-images": "pages/drink-images.js",
+  "/next/dist/pages/_error": "pages/next/dist/pages/_error.js",
+  "/drink-images/[id]": "pages/drink-images/[id].js"
+}
