@@ -16,8 +16,8 @@ export const Drink = list({
       ui: {
         displayMode: 'cards',
         cardFields: ['image', 'altText'],
-        inlineCreate: { fields: ['image, altText'] },
-        inlineEdit: { fields: ['image, altText'] },
+        inlineCreate: { fields: ['image', 'altText'] },
+        inlineEdit: { fields: ['image', 'altText'] },
       },
     }),
     status: select({

@@ -20,4 +20,9 @@ export const DrinkImage = list({
       ref: 'Drink.photo',
     }),
   },
+  ui: {
+    listView: {
+      initialColumns: ['image', 'altText', 'drink'],
+    },
+  },
 });
