@@ -24,11 +24,6 @@
       "static/chunks/webpack.js",
       "static/chunks/pages/_error.js"
     ],
-    "/drinks": [
-      "static/chunks/main.js",
-      "static/chunks/webpack.js",
-      "static/chunks/pages/drinks.js"
-    ],
     "/drinks/[id]": [
       "static/chunks/main.js",
       "static/chunks/webpack.js",
