@@ -188,26 +188,62 @@ export type DrinkWhereInput = {
   readonly name_not_ends_with_i?: Scalars['String'] | null;
   readonly name_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly name_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly description?: Scalars['String'] | null;
-  readonly description_not?: Scalars['String'] | null;
-  readonly description_contains?: Scalars['String'] | null;
-  readonly description_not_contains?: Scalars['String'] | null;
-  readonly description_starts_with?: Scalars['String'] | null;
-  readonly description_not_starts_with?: Scalars['String'] | null;
-  readonly description_ends_with?: Scalars['String'] | null;
-  readonly description_not_ends_with?: Scalars['String'] | null;
-  readonly description_i?: Scalars['String'] | null;
-  readonly description_not_i?: Scalars['String'] | null;
-  readonly description_contains_i?: Scalars['String'] | null;
-  readonly description_not_contains_i?: Scalars['String'] | null;
-  readonly description_starts_with_i?: Scalars['String'] | null;
-  readonly description_not_starts_with_i?: Scalars['String'] | null;
-  readonly description_ends_with_i?: Scalars['String'] | null;
-  readonly description_not_ends_with_i?: Scalars['String'] | null;
-  readonly description_in?: ReadonlyArray<Scalars['String'] | null> | null;
-  readonly description_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly ingredients?: Scalars['String'] | null;
+  readonly ingredients_not?: Scalars['String'] | null;
+  readonly ingredients_contains?: Scalars['String'] | null;
+  readonly ingredients_not_contains?: Scalars['String'] | null;
+  readonly ingredients_starts_with?: Scalars['String'] | null;
+  readonly ingredients_not_starts_with?: Scalars['String'] | null;
+  readonly ingredients_ends_with?: Scalars['String'] | null;
+  readonly ingredients_not_ends_with?: Scalars['String'] | null;
+  readonly ingredients_i?: Scalars['String'] | null;
+  readonly ingredients_not_i?: Scalars['String'] | null;
+  readonly ingredients_contains_i?: Scalars['String'] | null;
+  readonly ingredients_not_contains_i?: Scalars['String'] | null;
+  readonly ingredients_starts_with_i?: Scalars['String'] | null;
+  readonly ingredients_not_starts_with_i?: Scalars['String'] | null;
+  readonly ingredients_ends_with_i?: Scalars['String'] | null;
+  readonly ingredients_not_ends_with_i?: Scalars['String'] | null;
+  readonly ingredients_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly ingredients_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly preparation?: Scalars['String'] | null;
+  readonly preparation_not?: Scalars['String'] | null;
+  readonly preparation_contains?: Scalars['String'] | null;
+  readonly preparation_not_contains?: Scalars['String'] | null;
+  readonly preparation_starts_with?: Scalars['String'] | null;
+  readonly preparation_not_starts_with?: Scalars['String'] | null;
+  readonly preparation_ends_with?: Scalars['String'] | null;
+  readonly preparation_not_ends_with?: Scalars['String'] | null;
+  readonly preparation_i?: Scalars['String'] | null;
+  readonly preparation_not_i?: Scalars['String'] | null;
+  readonly preparation_contains_i?: Scalars['String'] | null;
+  readonly preparation_not_contains_i?: Scalars['String'] | null;
+  readonly preparation_starts_with_i?: Scalars['String'] | null;
+  readonly preparation_not_starts_with_i?: Scalars['String'] | null;
+  readonly preparation_ends_with_i?: Scalars['String'] | null;
+  readonly preparation_not_ends_with_i?: Scalars['String'] | null;
+  readonly preparation_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly preparation_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly photo?: DrinkImageWhereInput | null;
   readonly photo_is_null?: Scalars['Boolean'] | null;
+  readonly barware?: Scalars['String'] | null;
+  readonly barware_not?: Scalars['String'] | null;
+  readonly barware_contains?: Scalars['String'] | null;
+  readonly barware_not_contains?: Scalars['String'] | null;
+  readonly barware_starts_with?: Scalars['String'] | null;
+  readonly barware_not_starts_with?: Scalars['String'] | null;
+  readonly barware_ends_with?: Scalars['String'] | null;
+  readonly barware_not_ends_with?: Scalars['String'] | null;
+  readonly barware_i?: Scalars['String'] | null;
+  readonly barware_not_i?: Scalars['String'] | null;
+  readonly barware_contains_i?: Scalars['String'] | null;
+  readonly barware_not_contains_i?: Scalars['String'] | null;
+  readonly barware_starts_with_i?: Scalars['String'] | null;
+  readonly barware_not_starts_with_i?: Scalars['String'] | null;
+  readonly barware_ends_with_i?: Scalars['String'] | null;
+  readonly barware_not_ends_with_i?: Scalars['String'] | null;
+  readonly barware_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly barware_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly status?: Scalars['String'] | null;
   readonly status_not?: Scalars['String'] | null;
   readonly status_contains?: Scalars['String'] | null;
@@ -237,17 +273,23 @@ export type SortDrinksBy =
   | 'id_DESC'
   | 'name_ASC'
   | 'name_DESC'
-  | 'description_ASC'
-  | 'description_DESC'
+  | 'ingredients_ASC'
+  | 'ingredients_DESC'
+  | 'preparation_ASC'
+  | 'preparation_DESC'
   | 'photo_ASC'
   | 'photo_DESC'
+  | 'barware_ASC'
+  | 'barware_DESC'
   | 'status_ASC'
   | 'status_DESC';
 
 export type DrinkUpdateInput = {
   readonly name?: Scalars['String'] | null;
-  readonly description?: Scalars['String'] | null;
+  readonly ingredients?: Scalars['String'] | null;
+  readonly preparation?: Scalars['String'] | null;
   readonly photo?: DrinkImageRelateToOneInput | null;
+  readonly barware?: Scalars['String'] | null;
   readonly status?: Scalars['String'] | null;
 };
 
@@ -258,8 +300,10 @@ export type DrinksUpdateInput = {
 
 export type DrinkCreateInput = {
   readonly name?: Scalars['String'] | null;
-  readonly description?: Scalars['String'] | null;
+  readonly ingredients?: Scalars['String'] | null;
+  readonly preparation?: Scalars['String'] | null;
   readonly photo?: DrinkImageRelateToOneInput | null;
+  readonly barware?: Scalars['String'] | null;
   readonly status?: Scalars['String'] | null;
 };
 
@@ -457,12 +501,21 @@ export type UserListFn = (
 
 export type DrinkListTypeInfo = {
   key: 'Drink';
-  fields: 'id' | 'name' | 'description' | 'photo' | 'status';
+  fields:
+    | 'id'
+    | 'name'
+    | 'ingredients'
+    | 'preparation'
+    | 'photo'
+    | 'barware'
+    | 'status';
   backing: {
     readonly id: string;
     readonly name?: string | null;
-    readonly description?: string | null;
+    readonly ingredients?: string | null;
+    readonly preparation?: string | null;
     readonly photo?: string | null;
+    readonly barware?: string | null;
     readonly status?: string | null;
   };
   inputs: {

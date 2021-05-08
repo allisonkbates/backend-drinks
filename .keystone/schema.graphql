@@ -157,8 +157,10 @@ input DrinkImageRelateToOneInput {
 type Drink {
   id: ID!
   name: String
-  description: String
+  ingredients: String
+  preparation: String
   photo: DrinkImage
+  barware: String
   status: String
 }
 
@@ -187,26 +189,62 @@ input DrinkWhereInput {
   name_not_ends_with_i: String
   name_in: [String]
   name_not_in: [String]
-  description: String
-  description_not: String
-  description_contains: String
-  description_not_contains: String
-  description_starts_with: String
-  description_not_starts_with: String
-  description_ends_with: String
-  description_not_ends_with: String
-  description_i: String
-  description_not_i: String
-  description_contains_i: String
-  description_not_contains_i: String
-  description_starts_with_i: String
-  description_not_starts_with_i: String
-  description_ends_with_i: String
-  description_not_ends_with_i: String
-  description_in: [String]
-  description_not_in: [String]
+  ingredients: String
+  ingredients_not: String
+  ingredients_contains: String
+  ingredients_not_contains: String
+  ingredients_starts_with: String
+  ingredients_not_starts_with: String
+  ingredients_ends_with: String
+  ingredients_not_ends_with: String
+  ingredients_i: String
+  ingredients_not_i: String
+  ingredients_contains_i: String
+  ingredients_not_contains_i: String
+  ingredients_starts_with_i: String
+  ingredients_not_starts_with_i: String
+  ingredients_ends_with_i: String
+  ingredients_not_ends_with_i: String
+  ingredients_in: [String]
+  ingredients_not_in: [String]
+  preparation: String
+  preparation_not: String
+  preparation_contains: String
+  preparation_not_contains: String
+  preparation_starts_with: String
+  preparation_not_starts_with: String
+  preparation_ends_with: String
+  preparation_not_ends_with: String
+  preparation_i: String
+  preparation_not_i: String
+  preparation_contains_i: String
+  preparation_not_contains_i: String
+  preparation_starts_with_i: String
+  preparation_not_starts_with_i: String
+  preparation_ends_with_i: String
+  preparation_not_ends_with_i: String
+  preparation_in: [String]
+  preparation_not_in: [String]
   photo: DrinkImageWhereInput
   photo_is_null: Boolean
+  barware: String
+  barware_not: String
+  barware_contains: String
+  barware_not_contains: String
+  barware_starts_with: String
+  barware_not_starts_with: String
+  barware_ends_with: String
+  barware_not_ends_with: String
+  barware_i: String
+  barware_not_i: String
+  barware_contains_i: String
+  barware_not_contains_i: String
+  barware_starts_with_i: String
+  barware_not_starts_with_i: String
+  barware_ends_with_i: String
+  barware_not_ends_with_i: String
+  barware_in: [String]
+  barware_not_in: [String]
   status: String
   status_not: String
   status_contains: String
@@ -236,18 +274,24 @@ enum SortDrinksBy {
   id_DESC
   name_ASC
   name_DESC
-  description_ASC
-  description_DESC
+  ingredients_ASC
+  ingredients_DESC
+  preparation_ASC
+  preparation_DESC
   photo_ASC
   photo_DESC
+  barware_ASC
+  barware_DESC
   status_ASC
   status_DESC
 }
 
 input DrinkUpdateInput {
   name: String
-  description: String
+  ingredients: String
+  preparation: String
   photo: DrinkImageRelateToOneInput
+  barware: String
   status: String
 }
 
@@ -258,8 +302,10 @@ input DrinksUpdateInput {
 
 input DrinkCreateInput {
   name: String
-  description: String
+  ingredients: String
+  preparation: String
   photo: DrinkImageRelateToOneInput
+  barware: String
   status: String
 }
 
