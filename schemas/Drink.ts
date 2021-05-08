@@ -31,7 +31,7 @@ export const Drink = list({
         { label: 'Cocktail Glass', value: 'COCKTAIL-GLASS' },
         { label: 'Highball Glass', value: 'HIGHBALL-GLASS' },
         { label: 'Champagne Flute', value: 'CHAMPAGNE-FLUTE' },
-        { label: 'Copper Mug', value: 'COPPER MUG' },
+        { label: 'Copper Mug', value: 'COPPER-MUG' },
       ],
       defaultValue: 'OLD-FASHIONED-GLASS',
       ui: {
