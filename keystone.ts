@@ -8,6 +8,7 @@ import {
 import { User } from './schemas/User';
 import { Drink } from './schemas/Drink';
 import { DrinkImage } from './schemas/DrinkImage';
+import { Ingredient } from './schemas/Ingredient';
 
 const databaseURL =
   process.env.DATABASE_URL || 'mongodb://localhost/keystone-sick-fits';
@@ -45,6 +46,7 @@ export default withAuth(
       User,
       Drink,
       DrinkImage,
+      Ingredient,
     }),
     ui: {
       // to do : change this for roles

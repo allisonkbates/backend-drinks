@@ -11,22 +11,20 @@ export const Drink = list({
         displayMode: 'textarea',
       },
     }),
+    linkedIngredients: relationship({
+      ref: 'Ingredient.drink',
+      many: true,
+      ui: {
+        displayMode: 'select',
+      },
+    }),
     preparation: text({
       ui: {
         displayMode: 'textarea',
       },
     }),
-    photo: relationship({
-      ref: 'DrinkImage.drink',
-      ui: {
-        displayMode: 'cards',
-        cardFields: ['image', 'altText'],
-        inlineCreate: { fields: ['image', 'altText'] },
-        inlineEdit: { fields: ['image', 'altText'] },
-      },
-    }),
-    /* should barware be a relation instead so we serve the image from cloudinary */
     barware: select({
+      /* should barware be a relation instead so we serve the image from cloudinary */
       options: [
         { label: 'Old Fashioned Glass', value: 'OLD-FASHIONED-GLASS' },
         { label: 'Cocktail Glass', value: 'COCKTAIL-GLASS' },
@@ -41,6 +39,22 @@ export const Drink = list({
       },
     }),
     relatedDrinks: relationship({ ref: 'Drink', many: true }),
+    source: text(),
+    sourceLink: text(),
+    editorialNotes: text({
+      ui: {
+        displayMode: 'textarea',
+      },
+    }),
+    photo: relationship({
+      ref: 'DrinkImage.drink',
+      ui: {
+        displayMode: 'cards',
+        cardFields: ['image', 'altText'],
+        inlineCreate: { fields: ['image', 'altText'] },
+        inlineEdit: { fields: ['image', 'altText'] },
+      },
+    }),
     status: select({
       options: [
         { label: 'Draft', value: 'DRAFT' },

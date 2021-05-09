@@ -16,6 +16,7 @@ export const DrinkImage = list({
       label: 'source',
     }),
     altText: text(),
+    imgCredit: text(),
     drink: relationship({
       ref: 'Drink.photo',
     }),

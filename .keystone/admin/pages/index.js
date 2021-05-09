@@ -30,6 +30,9 @@ export default function Home() {
           DrinkImage: _allDrinkImagesMeta {
             count
           }
+          Ingredient: _allIngredientsMeta {
+            count
+          }
         }
       `}
     />

@@ -146,10 +146,10 @@ input UsersCreateInput {
   data: UserCreateInput
 }
 
-input DrinkImageRelateToOneInput {
-  create: DrinkImageCreateInput
-  connect: DrinkImageWhereUniqueInput
-  disconnect: DrinkImageWhereUniqueInput
+input IngredientRelateToManyInput {
+  create: [IngredientCreateInput]
+  connect: [IngredientWhereUniqueInput]
+  disconnect: [IngredientWhereUniqueInput]
   disconnectAll: Boolean
 }
 
@@ -160,16 +160,28 @@ input DrinkRelateToManyInput {
   disconnectAll: Boolean
 }
 
+input DrinkImageRelateToOneInput {
+  create: DrinkImageCreateInput
+  connect: DrinkImageWhereUniqueInput
+  disconnect: DrinkImageWhereUniqueInput
+  disconnectAll: Boolean
+}
+
 """ A keystone list """
 type Drink {
   id: ID!
   name: String
   ingredients: String
+  linkedIngredients(where: IngredientWhereInput, search: String, sortBy: [SortIngredientsBy!], orderBy: String, first: Int, skip: Int): [Ingredient!]!
+  _linkedIngredientsMeta(where: IngredientWhereInput, search: String, sortBy: [SortIngredientsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
   preparation: String
-  photo: DrinkImage
   barware: String
   relatedDrinks(where: DrinkWhereInput, search: String, sortBy: [SortDrinksBy!], orderBy: String, first: Int, skip: Int): [Drink!]!
   _relatedDrinksMeta(where: DrinkWhereInput, search: String, sortBy: [SortDrinksBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  source: String
+  sourceLink: String
+  editorialNotes: String
+  photo: DrinkImage
   status: String
 }
 
@@ -216,6 +228,15 @@ input DrinkWhereInput {
   ingredients_not_ends_with_i: String
   ingredients_in: [String]
   ingredients_not_in: [String]
+
+  """ condition must be true for all nodes """
+  linkedIngredients_every: IngredientWhereInput
+
+  """ condition must be true for at least 1 node """
+  linkedIngredients_some: IngredientWhereInput
+
+  """ condition must be false for all nodes """
+  linkedIngredients_none: IngredientWhereInput
   preparation: String
   preparation_not: String
   preparation_contains: String
@@ -234,8 +255,6 @@ input DrinkWhereInput {
   preparation_not_ends_with_i: String
   preparation_in: [String]
   preparation_not_in: [String]
-  photo: DrinkImageWhereInput
-  photo_is_null: Boolean
   barware: String
   barware_not: String
   barware_contains: String
@@ -263,6 +282,62 @@ input DrinkWhereInput {
 
   """ condition must be false for all nodes """
   relatedDrinks_none: DrinkWhereInput
+  source: String
+  source_not: String
+  source_contains: String
+  source_not_contains: String
+  source_starts_with: String
+  source_not_starts_with: String
+  source_ends_with: String
+  source_not_ends_with: String
+  source_i: String
+  source_not_i: String
+  source_contains_i: String
+  source_not_contains_i: String
+  source_starts_with_i: String
+  source_not_starts_with_i: String
+  source_ends_with_i: String
+  source_not_ends_with_i: String
+  source_in: [String]
+  source_not_in: [String]
+  sourceLink: String
+  sourceLink_not: String
+  sourceLink_contains: String
+  sourceLink_not_contains: String
+  sourceLink_starts_with: String
+  sourceLink_not_starts_with: String
+  sourceLink_ends_with: String
+  sourceLink_not_ends_with: String
+  sourceLink_i: String
+  sourceLink_not_i: String
+  sourceLink_contains_i: String
+  sourceLink_not_contains_i: String
+  sourceLink_starts_with_i: String
+  sourceLink_not_starts_with_i: String
+  sourceLink_ends_with_i: String
+  sourceLink_not_ends_with_i: String
+  sourceLink_in: [String]
+  sourceLink_not_in: [String]
+  editorialNotes: String
+  editorialNotes_not: String
+  editorialNotes_contains: String
+  editorialNotes_not_contains: String
+  editorialNotes_starts_with: String
+  editorialNotes_not_starts_with: String
+  editorialNotes_ends_with: String
+  editorialNotes_not_ends_with: String
+  editorialNotes_i: String
+  editorialNotes_not_i: String
+  editorialNotes_contains_i: String
+  editorialNotes_not_contains_i: String
+  editorialNotes_starts_with_i: String
+  editorialNotes_not_starts_with_i: String
+  editorialNotes_ends_with_i: String
+  editorialNotes_not_ends_with_i: String
+  editorialNotes_in: [String]
+  editorialNotes_not_in: [String]
+  photo: DrinkImageWhereInput
+  photo_is_null: Boolean
   status: String
   status_not: String
   status_contains: String
@@ -294,14 +369,22 @@ enum SortDrinksBy {
   name_DESC
   ingredients_ASC
   ingredients_DESC
+  linkedIngredients_ASC
+  linkedIngredients_DESC
   preparation_ASC
   preparation_DESC
-  photo_ASC
-  photo_DESC
   barware_ASC
   barware_DESC
   relatedDrinks_ASC
   relatedDrinks_DESC
+  source_ASC
+  source_DESC
+  sourceLink_ASC
+  sourceLink_DESC
+  editorialNotes_ASC
+  editorialNotes_DESC
+  photo_ASC
+  photo_DESC
   status_ASC
   status_DESC
 }
@@ -309,10 +392,14 @@ enum SortDrinksBy {
 input DrinkUpdateInput {
   name: String
   ingredients: String
+  linkedIngredients: IngredientRelateToManyInput
   preparation: String
-  photo: DrinkImageRelateToOneInput
   barware: String
   relatedDrinks: DrinkRelateToManyInput
+  source: String
+  sourceLink: String
+  editorialNotes: String
+  photo: DrinkImageRelateToOneInput
   status: String
 }
 
@@ -324,10 +411,14 @@ input DrinksUpdateInput {
 input DrinkCreateInput {
   name: String
   ingredients: String
+  linkedIngredients: IngredientRelateToManyInput
   preparation: String
-  photo: DrinkImageRelateToOneInput
   barware: String
   relatedDrinks: DrinkRelateToManyInput
+  source: String
+  sourceLink: String
+  editorialNotes: String
+  photo: DrinkImageRelateToOneInput
   status: String
 }
 
@@ -396,6 +487,7 @@ type DrinkImage {
   id: ID!
   image: CloudinaryImage_File
   altText: String
+  imgCredit: String
   drink: Drink
 }
 
@@ -428,6 +520,24 @@ input DrinkImageWhereInput {
   altText_not_ends_with_i: String
   altText_in: [String]
   altText_not_in: [String]
+  imgCredit: String
+  imgCredit_not: String
+  imgCredit_contains: String
+  imgCredit_not_contains: String
+  imgCredit_starts_with: String
+  imgCredit_not_starts_with: String
+  imgCredit_ends_with: String
+  imgCredit_not_ends_with: String
+  imgCredit_i: String
+  imgCredit_not_i: String
+  imgCredit_contains_i: String
+  imgCredit_not_contains_i: String
+  imgCredit_starts_with_i: String
+  imgCredit_not_starts_with_i: String
+  imgCredit_ends_with_i: String
+  imgCredit_not_ends_with_i: String
+  imgCredit_in: [String]
+  imgCredit_not_in: [String]
   drink: DrinkWhereInput
   drink_is_null: Boolean
 }
@@ -441,6 +551,8 @@ enum SortDrinkImagesBy {
   id_DESC
   altText_ASC
   altText_DESC
+  imgCredit_ASC
+  imgCredit_DESC
   drink_ASC
   drink_DESC
 }
@@ -448,6 +560,7 @@ enum SortDrinkImagesBy {
 input DrinkImageUpdateInput {
   image: Upload
   altText: String
+  imgCredit: String
   drink: DrinkRelateToOneInput
 }
 
@@ -459,11 +572,134 @@ input DrinkImagesUpdateInput {
 input DrinkImageCreateInput {
   image: Upload
   altText: String
+  imgCredit: String
   drink: DrinkRelateToOneInput
 }
 
 input DrinkImagesCreateInput {
   data: DrinkImageCreateInput
+}
+
+""" A keystone list """
+type Ingredient {
+  id: ID!
+  name: String
+  drink(where: DrinkWhereInput, search: String, sortBy: [SortDrinksBy!], orderBy: String, first: Int, skip: Int): [Drink!]!
+  _drinkMeta(where: DrinkWhereInput, search: String, sortBy: [SortDrinksBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+  category: String
+  notes: String
+}
+
+input IngredientWhereInput {
+  AND: [IngredientWhereInput]
+  OR: [IngredientWhereInput]
+  id: ID
+  id_not: ID
+  id_in: [ID]
+  id_not_in: [ID]
+  name: String
+  name_not: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
+  name_i: String
+  name_not_i: String
+  name_contains_i: String
+  name_not_contains_i: String
+  name_starts_with_i: String
+  name_not_starts_with_i: String
+  name_ends_with_i: String
+  name_not_ends_with_i: String
+  name_in: [String]
+  name_not_in: [String]
+
+  """ condition must be true for all nodes """
+  drink_every: DrinkWhereInput
+
+  """ condition must be true for at least 1 node """
+  drink_some: DrinkWhereInput
+
+  """ condition must be false for all nodes """
+  drink_none: DrinkWhereInput
+  category: String
+  category_not: String
+  category_contains: String
+  category_not_contains: String
+  category_starts_with: String
+  category_not_starts_with: String
+  category_ends_with: String
+  category_not_ends_with: String
+  category_i: String
+  category_not_i: String
+  category_contains_i: String
+  category_not_contains_i: String
+  category_starts_with_i: String
+  category_not_starts_with_i: String
+  category_ends_with_i: String
+  category_not_ends_with_i: String
+  category_in: [String]
+  category_not_in: [String]
+  notes: String
+  notes_not: String
+  notes_contains: String
+  notes_not_contains: String
+  notes_starts_with: String
+  notes_not_starts_with: String
+  notes_ends_with: String
+  notes_not_ends_with: String
+  notes_i: String
+  notes_not_i: String
+  notes_contains_i: String
+  notes_not_contains_i: String
+  notes_starts_with_i: String
+  notes_not_starts_with_i: String
+  notes_ends_with_i: String
+  notes_not_ends_with_i: String
+  notes_in: [String]
+  notes_not_in: [String]
+}
+
+input IngredientWhereUniqueInput {
+  id: ID!
+}
+
+enum SortIngredientsBy {
+  id_ASC
+  id_DESC
+  name_ASC
+  name_DESC
+  drink_ASC
+  drink_DESC
+  category_ASC
+  category_DESC
+  notes_ASC
+  notes_DESC
+}
+
+input IngredientUpdateInput {
+  name: String
+  drink: DrinkRelateToManyInput
+  category: String
+  notes: String
+}
+
+input IngredientsUpdateInput {
+  id: ID!
+  data: IngredientUpdateInput
+}
+
+input IngredientCreateInput {
+  name: String
+  drink: DrinkRelateToManyInput
+  category: String
+  notes: String
+}
+
+input IngredientsCreateInput {
+  data: IngredientCreateInput
 }
 
 """
@@ -685,6 +921,19 @@ type Query {
   """ Retrieve the meta-data for the DrinkImage list. """
   _DrinkImagesMeta: _ListMeta
 
+  """ Search for all Ingredient items which match the where clause. """
+  allIngredients(where: IngredientWhereInput, search: String, sortBy: [SortIngredientsBy!], orderBy: String, first: Int, skip: Int): [Ingredient]
+
+  """ Search for the Ingredient item with the matching ID. """
+  Ingredient(where: IngredientWhereUniqueInput!): Ingredient
+
+  """ Perform a meta-query on all Ingredient items which match the where clause. 
+  """
+  _allIngredientsMeta(where: IngredientWhereInput, search: String, sortBy: [SortIngredientsBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
+
+  """ Retrieve the meta-data for the Ingredient list. """
+  _IngredientsMeta: _ListMeta
+
   """ Retrieve the meta-data for all lists. """
   _ksListsMeta(where: _ksListsMetaInput): [_ListMeta]
 
@@ -748,6 +997,24 @@ type Mutation {
 
   """ Delete multiple DrinkImage items by ID. """
   deleteDrinkImages(ids: [ID!]): [DrinkImage]
+
+  """ Create a single Ingredient item. """
+  createIngredient(data: IngredientCreateInput): Ingredient
+
+  """ Create multiple Ingredient items. """
+  createIngredients(data: [IngredientsCreateInput]): [Ingredient]
+
+  """ Update a single Ingredient item by ID. """
+  updateIngredient(id: ID!, data: IngredientUpdateInput): Ingredient
+
+  """ Update multiple Ingredient items by ID. """
+  updateIngredients(data: [IngredientsUpdateInput]): [Ingredient]
+
+  """ Delete a single Ingredient item by ID. """
+  deleteIngredient(id: ID!): Ingredient
+
+  """ Delete multiple Ingredient items by ID. """
+  deleteIngredients(ids: [ID!]): [Ingredient]
   authenticateUserWithPassword(email: String!, password: String!): UserAuthenticationWithPasswordResult!
   createInitialUser(data: CreateInitialUserInput!): UserAuthenticationWithPasswordSuccess!
   endSession: Boolean!
