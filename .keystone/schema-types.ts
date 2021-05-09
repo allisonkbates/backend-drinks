@@ -163,6 +163,13 @@ export type DrinkImageRelateToOneInput = {
   readonly disconnectAll?: Scalars['Boolean'] | null;
 };
 
+export type DrinkRelateToManyInput = {
+  readonly create?: ReadonlyArray<DrinkCreateInput | null> | null;
+  readonly connect?: ReadonlyArray<DrinkWhereUniqueInput | null> | null;
+  readonly disconnect?: ReadonlyArray<DrinkWhereUniqueInput | null> | null;
+  readonly disconnectAll?: Scalars['Boolean'] | null;
+};
+
 export type DrinkWhereInput = {
   readonly AND?: ReadonlyArray<DrinkWhereInput | null> | null;
   readonly OR?: ReadonlyArray<DrinkWhereInput | null> | null;
@@ -244,6 +251,9 @@ export type DrinkWhereInput = {
   readonly barware_not_ends_with_i?: Scalars['String'] | null;
   readonly barware_in?: ReadonlyArray<Scalars['String'] | null> | null;
   readonly barware_not_in?: ReadonlyArray<Scalars['String'] | null> | null;
+  readonly relatedDrinks_every?: DrinkWhereInput | null;
+  readonly relatedDrinks_some?: DrinkWhereInput | null;
+  readonly relatedDrinks_none?: DrinkWhereInput | null;
   readonly status?: Scalars['String'] | null;
   readonly status_not?: Scalars['String'] | null;
   readonly status_contains?: Scalars['String'] | null;
@@ -281,6 +291,8 @@ export type SortDrinksBy =
   | 'photo_DESC'
   | 'barware_ASC'
   | 'barware_DESC'
+  | 'relatedDrinks_ASC'
+  | 'relatedDrinks_DESC'
   | 'status_ASC'
   | 'status_DESC';
 
@@ -290,6 +302,7 @@ export type DrinkUpdateInput = {
   readonly preparation?: Scalars['String'] | null;
   readonly photo?: DrinkImageRelateToOneInput | null;
   readonly barware?: Scalars['String'] | null;
+  readonly relatedDrinks?: DrinkRelateToManyInput | null;
   readonly status?: Scalars['String'] | null;
 };
 
@@ -304,6 +317,7 @@ export type DrinkCreateInput = {
   readonly preparation?: Scalars['String'] | null;
   readonly photo?: DrinkImageRelateToOneInput | null;
   readonly barware?: Scalars['String'] | null;
+  readonly relatedDrinks?: DrinkRelateToManyInput | null;
   readonly status?: Scalars['String'] | null;
 };
 
@@ -508,6 +522,7 @@ export type DrinkListTypeInfo = {
     | 'preparation'
     | 'photo'
     | 'barware'
+    | 'relatedDrinks'
     | 'status';
   backing: {
     readonly id: string;
@@ -516,6 +531,7 @@ export type DrinkListTypeInfo = {
     readonly preparation?: string | null;
     readonly photo?: string | null;
     readonly barware?: string | null;
+    readonly relatedDrinks?: string | null;
     readonly status?: string | null;
   };
   inputs: {

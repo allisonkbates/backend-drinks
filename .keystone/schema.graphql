@@ -153,6 +153,13 @@ input DrinkImageRelateToOneInput {
   disconnectAll: Boolean
 }
 
+input DrinkRelateToManyInput {
+  create: [DrinkCreateInput]
+  connect: [DrinkWhereUniqueInput]
+  disconnect: [DrinkWhereUniqueInput]
+  disconnectAll: Boolean
+}
+
 """ A keystone list """
 type Drink {
   id: ID!
@@ -161,6 +168,8 @@ type Drink {
   preparation: String
   photo: DrinkImage
   barware: String
+  relatedDrinks(where: DrinkWhereInput, search: String, sortBy: [SortDrinksBy!], orderBy: String, first: Int, skip: Int): [Drink!]!
+  _relatedDrinksMeta(where: DrinkWhereInput, search: String, sortBy: [SortDrinksBy!], orderBy: String, first: Int, skip: Int): _QueryMeta
   status: String
 }
 
@@ -245,6 +254,15 @@ input DrinkWhereInput {
   barware_not_ends_with_i: String
   barware_in: [String]
   barware_not_in: [String]
+
+  """ condition must be true for all nodes """
+  relatedDrinks_every: DrinkWhereInput
+
+  """ condition must be true for at least 1 node """
+  relatedDrinks_some: DrinkWhereInput
+
+  """ condition must be false for all nodes """
+  relatedDrinks_none: DrinkWhereInput
   status: String
   status_not: String
   status_contains: String
@@ -282,6 +300,8 @@ enum SortDrinksBy {
   photo_DESC
   barware_ASC
   barware_DESC
+  relatedDrinks_ASC
+  relatedDrinks_DESC
   status_ASC
   status_DESC
 }
@@ -292,6 +312,7 @@ input DrinkUpdateInput {
   preparation: String
   photo: DrinkImageRelateToOneInput
   barware: String
+  relatedDrinks: DrinkRelateToManyInput
   status: String
 }
 
@@ -306,6 +327,7 @@ input DrinkCreateInput {
   preparation: String
   photo: DrinkImageRelateToOneInput
   barware: String
+  relatedDrinks: DrinkRelateToManyInput
   status: String
 }
 

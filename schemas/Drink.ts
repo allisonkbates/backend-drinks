@@ -25,6 +25,7 @@ export const Drink = list({
         inlineEdit: { fields: ['image', 'altText'] },
       },
     }),
+    /* should barware be a relation instead so we serve the image from cloudinary */
     barware: select({
       options: [
         { label: 'Old Fashioned Glass', value: 'OLD-FASHIONED-GLASS' },
@@ -39,6 +40,7 @@ export const Drink = list({
         createView: { fieldMode: 'edit' }, // this hides this feld from the create field - nifty trick!
       },
     }),
+    relatedDrinks: relationship({ ref: 'Drink', many: true }),
     status: select({
       options: [
         { label: 'Draft', value: 'DRAFT' },
