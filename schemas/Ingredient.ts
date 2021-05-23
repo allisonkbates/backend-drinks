@@ -10,7 +10,7 @@ export const Ingredient = list({
     }),
     category: select({
       options: [
-        { label: 'Base Spirit', value: 'Base Spirit' },
+        { label: 'Base Spirit', value: 'BaseSpirit' },
         { label: 'Liquers', value: 'Liquers' },
         { label: 'Bitters', value: 'Bitters' },
         { label: 'Syrups', value: 'Syrups' },
